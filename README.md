@@ -1,7 +1,7 @@
 # EasyCourse-Back-End
 介绍：轻课的Restful Java后端，由Blade强力驱动，主要是POST和GET请求，通讯报文使用json
 
-部分接口声明：http://zhaoweihao.com:9001/api
+部分接口声明：http://coffee.zhaoweihao.com:9001/api
 
 建议配合sql数据库文件和Android食用更完美
 
