@@ -2,61 +2,74 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>blade-demos</artifactId>
-        <groupId>com.bladejava</groupId>
-        <version>0.0.1</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>blade-package</artifactId>
+    <groupId>com.bladejava</groupId>
+    <artifactId>blade-demos</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1</version>
 
+    <modules>
+        <module>blade-helloworld</module>
+        <module>blade-route</module>
+        <module>blade-template</module>
+        <module>blade-ajax</module>
+        <module>blade-vue-todolist</module>
+        <module>blade-upload</module>
+        <module>blade-custom-banner</module>
+        <module>blade-kit-example</module>
+        <module>blade-freemarker</module>
+        <module>blade-task</module>
+        <module>blade-mongo</module>
+        <module>blade-package</module>
+        <module>blade-activemq</module>
+        <module>blade-param</module>
+        <module>blade-test</module>
+        <module>blade-static</module>
+        <module>blade-errorpage</module>
+        <module>blade-lattice</module>
+        <module>blade-anima</module>
+        <module>blade-gzip</module>
+        <module>blade-basic-auth</module>
+        <module>blade-csrf-token</module>
+        <module>blade-websocket</module>
+        <module>blade-verify-code</module>
+        <module>blade-download</module>
+        <module>blade-cors</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <blade.version>2.0.13.ALPHA</blade.version>
+    </properties>
+    
     <dependencies>
-        <!-- mvc dependency -->
+        <!-- mvc -->
         <dependency>
             <groupId>com.bladejava</groupId>
             <artifactId>blade-mvc</artifactId>
-            <version>2.0.6-BETA</version>
+            <version>${blade.version}</version>
         </dependency>
-
-        <!--sqlite数据库-->
-        <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.15.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.16</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.bladejava</groupId>
-            <artifactId>blade-jdbc</artifactId>
-            <version>0.2.2-RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.18</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.4</version>
-        </dependency>
-
-
     </dependencies>
-    <build>
-        <!--打包文件夹-->
-        <finalName>restful</finalName>
 
-        <!--资源路径-->
+    <repositories>
+        <repository>
+            <id>oss-release</id>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>oss-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <build>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -67,57 +80,17 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
-
-        <!--配置文件编译版本-->
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <descriptors>
-                        <descriptor>package.xml</descriptor>
-                    </descriptors>
-                    <outputDirectory>${project.build.directory}/dist/</outputDirectory>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <!--记得修改-->
-                            <mainClass>com.blade.demo.route.RouteApplication</mainClass>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <addClasspath>true</addClasspath>
-                        </manifest>
-                        <manifestEntries>
-                            <!-- 在Class-Path下添加配置文件的路径 -->
-                            <Class-Path>resources/</Class-Path>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
         </plugins>
-
     </build>
 
 </project>
